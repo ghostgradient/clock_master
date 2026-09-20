@@ -24,6 +24,11 @@
   --r-xl:28px; --r-lg:22px; --r-md:16px; --r-sm:12px;
   --ease:cubic-bezier(.22,1,.36,1);
   --spring:cubic-bezier(.34,1.56,.64,1);
+  --blob-op:.85;
+}
+/* ── 1. OLED Noir (dark, no glass) ───────────────── */
+html[data-theme="oled"]{
+  --r-xl:22px; --r-lg:18px;
   --bg:#000; --text:#e9f1ec; --dim:#9aa9a0; --mute:#5f6d66;
   --panel:rgba(12,14,16,.94); --panel-2:rgba(24,27,30,.92);
   --line:rgba(255,255,255,.09); --line-hot:rgba(255,255,255,.2);
@@ -33,49 +38,99 @@
   --tab-on:rgba(53,240,138,.13); --tab-on-ink:#35f08a;
   --spec:inset 0 1px 0 rgba(255,255,255,.05);
   --shadow:0 0 0 transparent;
-  --blur:none;
+  --blur:none; --sheen:transparent;
   --track:rgba(255,255,255,.08);
   --face:#0c0e10; --face-ink:#e9f1ec; --face-night:#000; --face-night-ink:#e9f1ec;
-  --scrim:rgba(0,0,0,.72);
+  --scrim:rgba(0,0,0,.72); --sheet-bg:#0b0d0f;
   color-scheme:dark;
 }
-html[data-theme="oled"]{ --r-xl:22px; --r-lg:18px; }
-html[data-theme="glass"]{
+/* ── 2. Midnight Glass (dark) ────────────────────── */
+html[data-theme="midnight"]{
+  --font-ui:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
+  --font-num:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
+  --num-w:200;
+  --bg:#05060c; --text:#f5f7fc; --dim:#a9b0c4; --mute:#6d7488;
+  --panel:rgba(32,34,48,var(--ga,.42)); --panel-2:rgba(52,55,74,calc(var(--ga,.42) + .16));
+  --line:rgba(255,255,255,.15); --line-hot:rgba(255,255,255,.34);
+  --accent:#30d158; --accent-ink:#00150a; --gold:#ffd60a; --dyellow:#ff9f0a;
+  --timer:#ff9f0a; --danger:#ff453a; --info:#0a84ff;
+  --btn:rgba(255,255,255,.1); --btn-hot:rgba(255,255,255,.19);
+  --tab-on:rgba(255,255,255,.18); --tab-on-ink:#fff;
+  --spec:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -14px 26px rgba(255,255,255,.05),inset 0 -1px 0 rgba(0,0,0,.35);
+  --shadow:0 16px 40px rgba(0,0,0,.45),0 2px 8px rgba(0,0,0,.3);
+  --blur:blur(var(--gb,22px)) saturate(185%) brightness(1.06);
+  --sheen:rgba(255,255,255,.16);
+  --track:rgba(255,255,255,.1);
+  --face:#fff; --face-ink:#0d0f14; --face-night:#15171e; --face-night-ink:#fff;
+  --scrim:rgba(0,0,0,.55); --sheet-bg:rgba(30,32,44,.86);
+  --bl1:#5b2cff; --bl2:#0070f3; --bl3:#ff2d87; --bl4:#00b894; --bl5:#ff9f0a; --blob-op:.5;
+  color-scheme:dark;
+}
+/* ── 3. Graphite Glass (dark, neutral) ───────────── */
+html[data-theme="graphite"]{
+  --font-ui:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
+  --font-num:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
+  --num-w:200;
+  --bg:#0c0e11; --text:#eef1f6; --dim:#a4acb9; --mute:#6b7380;
+  --panel:rgba(44,48,55,var(--ga,.42)); --panel-2:rgba(66,71,80,calc(var(--ga,.42) + .16));
+  --line:rgba(255,255,255,.17); --line-hot:rgba(255,255,255,.35);
+  --accent:#5fdfae; --accent-ink:#002014; --gold:#f0c34e; --dyellow:#d9a520;
+  --timer:#ff9f5a; --danger:#ff6961; --info:#64d2ff;
+  --btn:rgba(255,255,255,.11); --btn-hot:rgba(255,255,255,.2);
+  --tab-on:rgba(255,255,255,.2); --tab-on-ink:#fff;
+  --spec:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -16px 28px rgba(255,255,255,.05),inset 0 -1px 0 rgba(0,0,0,.4);
+  --shadow:0 18px 44px rgba(0,0,0,.5),0 2px 6px rgba(0,0,0,.35);
+  --blur:blur(var(--gb,22px)) saturate(160%) brightness(1.08);
+  --sheen:rgba(255,255,255,.18);
+  --track:rgba(255,255,255,.11);
+  --face:#fff; --face-ink:#0d0f14; --face-night:#191c21; --face-night-ink:#fff;
+  --scrim:rgba(0,0,0,.55); --sheet-bg:rgba(42,46,53,.88);
+  --bl1:#3d6a94; --bl2:#2e7f79; --bl3:#5a6474; --bl4:#7a6a8f; --bl5:#48707f; --blob-op:.55;
+  color-scheme:dark;
+}
+/* ── 4. Daylight Glass (light, vivid) ────────────── */
+html[data-theme="daylight"]{
   --font-ui:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
   --font-num:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
   --num-w:200;
   --bg:#e9edf5; --text:#0d0f14; --dim:#4c5261; --mute:#868c9b;
-  --panel:rgba(255,255,255,var(--ga,.42)); --panel-2:rgba(255,255,255,calc(var(--ga,.42) + .22));
-  --line:rgba(255,255,255,.72); --line-hot:rgba(255,255,255,.98);
+  --panel:rgba(255,255,255,var(--ga,.42)); --panel-2:rgba(255,255,255,calc(var(--ga,.42) + .24));
+  --line:rgba(255,255,255,.75); --line-hot:rgba(255,255,255,.98);
   --accent:#28b44e; --accent-ink:#fff; --gold:#ff9f0a; --dyellow:#e08600;
   --timer:#ff9500; --danger:#ff3b30; --info:#007aff;
-  --btn:rgba(255,255,255,.55); --btn-hot:rgba(255,255,255,.85);
-  --tab-on:rgba(255,255,255,.92); --tab-on-ink:#0d0f14;
-  --spec:0 1px 1px rgba(255,255,255,.95) inset,0 -14px 24px rgba(255,255,255,.28) inset;
-  --shadow:0 12px 32px rgba(30,34,50,.12),0 2px 6px rgba(30,34,50,.06);
+  --btn:rgba(255,255,255,.58); --btn-hot:rgba(255,255,255,.88);
+  --tab-on:rgba(255,255,255,.95); --tab-on-ink:#0d0f14;
+  --spec:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -14px 24px rgba(255,255,255,.35),inset 0 -1px 0 rgba(20,24,40,.07);
+  --shadow:0 14px 36px rgba(30,34,50,.14),0 2px 6px rgba(30,34,50,.07);
   --blur:blur(var(--gb,22px)) saturate(190%);
+  --sheen:rgba(255,255,255,.6);
   --track:rgba(20,24,40,.09);
   --face:#fff; --face-ink:#0d0f14; --face-night:#101218; --face-night-ink:#fff;
-  --scrim:rgba(20,24,40,.28);
+  --scrim:rgba(20,24,40,.28); --sheet-bg:rgba(255,255,255,.84);
+  --bl1:#ff9ec7; --bl2:#7ab8ff; --bl3:#ffd36e; --bl4:#8ef0bf; --bl5:#bba0ff; --blob-op:.85;
   color-scheme:light;
 }
-html[data-theme="glassdark"]{
+/* ── 5. Porcelain (light, warm) ──────────────────── */
+html[data-theme="porcelain"]{
   --font-ui:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
   --font-num:-apple-system,BlinkMacSystemFont,'SF Pro Display','Sora',system-ui,sans-serif;
   --num-w:200;
-  --bg:#06070c; --text:#f4f6fb; --dim:#a7adbd; --mute:#6c7285;
-  --panel:rgba(30,32,42,var(--ga,.42)); --panel-2:rgba(46,49,62,calc(var(--ga,.42) + .15));
-  --line:rgba(255,255,255,.14); --line-hot:rgba(255,255,255,.3);
-  --accent:#30d158; --accent-ink:#00150a; --gold:#ffd60a; --dyellow:#ff9f0a;
-  --timer:#ff9f0a; --danger:#ff453a; --info:#0a84ff;
-  --btn:rgba(255,255,255,.1); --btn-hot:rgba(255,255,255,.18);
-  --tab-on:rgba(255,255,255,.16); --tab-on-ink:#fff;
-  --spec:0 1px 0 rgba(255,255,255,.18) inset,0 -12px 24px rgba(255,255,255,.04) inset;
-  --shadow:0 14px 36px rgba(0,0,0,.35);
-  --blur:blur(var(--gb,22px)) saturate(180%);
-  --track:rgba(255,255,255,.1);
-  --face:#fff; --face-ink:#0d0f14; --face-night:#15171e; --face-night-ink:#fff;
-  --scrim:rgba(0,0,0,.5);
+  --bg:#f3ede5; --text:#1a1713; --dim:#5b5348; --mute:#948b7d;
+  --panel:rgba(255,253,249,var(--ga,.42)); --panel-2:rgba(255,253,249,calc(var(--ga,.42) + .26));
+  --line:rgba(255,255,255,.8); --line-hot:rgba(255,255,255,1);
+  --accent:#1f9d5b; --accent-ink:#fff; --gold:#c8860a; --dyellow:#a97505;
+  --timer:#e07a1f; --danger:#c8412f; --info:#2f6fd0;
+  --btn:rgba(255,253,249,.62); --btn-hot:rgba(255,253,249,.92);
+  --tab-on:rgba(255,253,249,.96); --tab-on-ink:#1a1713;
+  --spec:inset 0 1px 1px rgba(255,255,255,.95),inset 0 -14px 24px rgba(255,248,236,.5),inset 0 -1px 0 rgba(60,48,32,.07);
+  --shadow:0 14px 34px rgba(80,62,40,.12),0 2px 6px rgba(80,62,40,.07);
+  --blur:blur(var(--gb,22px)) saturate(165%);
+  --sheen:rgba(255,255,255,.62);
+  --track:rgba(70,56,38,.09);
+  --face:#fffdf9; --face-ink:#1a1713; --face-night:#2a241d; --face-night-ink:#fffdf9;
+  --scrim:rgba(60,48,32,.26); --sheet-bg:rgba(255,253,249,.86);
+  --bl1:#ffcfae; --bl2:#ffe8b0; --bl3:#cfe3c2; --bl4:#ffc7cf; --bl5:#cfe0ff; --blob-op:.8;
+  color-scheme:light;
 }
 
 *{box-sizing:border-box}
@@ -98,16 +153,12 @@ h3{font-size:15px}
 .bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 html[data-theme="oled"] .bg{display:none}
 .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.9;will-change:transform}
-.b1{width:48vmax;height:48vmax;left:-12vmax;top:-14vmax;background:#ff9ec7}
-.b2{width:44vmax;height:44vmax;right:-14vmax;top:-6vmax;background:#7ab8ff}
-.b3{width:40vmax;height:40vmax;left:20vmax;bottom:-18vmax;background:#ffd36e}
-.b4{width:34vmax;height:34vmax;right:4vmax;bottom:-8vmax;background:#8ef0bf}
-.b5{width:28vmax;height:28vmax;left:38vmax;top:22vh;background:#bba0ff;opacity:.7}
-html[data-theme="glassdark"] .b1{background:#5b2cff;opacity:.55}
-html[data-theme="glassdark"] .b2{background:#0070f3;opacity:.5}
-html[data-theme="glassdark"] .b3{background:#ff2d87;opacity:.38}
-html[data-theme="glassdark"] .b4{background:#00b894;opacity:.35}
-html[data-theme="glassdark"] .b5{background:#ff9f0a;opacity:.25}
+.blob{opacity:var(--blob-op,.8)}
+.b1{width:48vmax;height:48vmax;left:-12vmax;top:-14vmax;background:var(--bl1,#ff9ec7)}
+.b2{width:44vmax;height:44vmax;right:-14vmax;top:-6vmax;background:var(--bl2,#7ab8ff)}
+.b3{width:40vmax;height:40vmax;left:20vmax;bottom:-18vmax;background:var(--bl3,#ffd36e)}
+.b4{width:34vmax;height:34vmax;right:4vmax;bottom:-8vmax;background:var(--bl4,#8ef0bf)}
+.b5{width:28vmax;height:28vmax;left:38vmax;top:22vh;background:var(--bl5,#bba0ff);opacity:calc(var(--blob-op,.8) * .8)}
 html.mo .b1{animation:drift1 26s ease-in-out infinite alternate}
 html.mo .b2{animation:drift2 31s ease-in-out infinite alternate}
 html.mo .b3{animation:drift1 37s ease-in-out infinite alternate-reverse}
@@ -162,6 +213,9 @@ main{flex:1;position:relative;overflow:hidden}
 .view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
   padding:6px max(18px,env(safe-area-inset-right)) calc(120px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left))}
 .view:not(.active){display:none}
+.view.peek{display:block;will-change:transform}
+.view.sliding{transition:transform .3s var(--ease)}
+.view.peek,.view.sliding{overflow-y:hidden}
 .wrap{max-width:1240px;margin:0 auto}
 html.mo .view.active>.wrap>*{animation:rise .5s var(--ease)}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -176,6 +230,9 @@ html.mo .view.active>.wrap>*{animation:rise .5s var(--ease)}
   backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
 html[data-theme="oled"] .tabbar{background:rgba(10,12,14,.96)}
 .tabbar::-webkit-scrollbar{display:none}
+.tabbar::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(120deg,var(--sheen,transparent),transparent 45%);mix-blend-mode:overlay}
+html[data-theme="oled"] .tabbar::before{display:none}
 .tab-ind{position:absolute;top:6px;bottom:6px;left:0;width:0;border-radius:999px;background:var(--tab-on);
   box-shadow:var(--spec);transition:left .55s var(--spring),width .55s var(--spring);pointer-events:none}
 .tab{position:relative;appearance:none;border:0;background:transparent;color:var(--dim);display:flex;flex-direction:column;align-items:center;gap:2px;
@@ -185,19 +242,25 @@ html[data-theme="oled"] .tabbar{background:rgba(10,12,14,.96)}
 .tab:active{transform:scale(.9)}
 
 /* panels & primitives */
-.panel{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-xl);
+.panel{position:relative;isolation:isolate;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-xl);
   box-shadow:var(--spec),var(--shadow);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);padding:20px}
-html[data-theme="glass"] .panel::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-  background:linear-gradient(135deg,rgba(255,255,255,.5),transparent 42%);mix-blend-mode:overlay}
+.panel::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(135deg,var(--sheen,transparent),transparent 42%);mix-blend-mode:overlay}
+html[data-theme="oled"] .panel::before{display:none}
 html[data-theme="oled"] .panel{transition:border-color .25s}
 html[data-theme="oled"] .panel:hover{border-color:rgba(201,162,39,.35)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  html[data-theme="glass"] .panel,html[data-theme="glass"] .tabbar{background:rgba(255,255,255,.9)}
-  html[data-theme="glassdark"] .panel,html[data-theme="glassdark"] .tabbar{background:rgba(30,32,42,.94)}
+  html[data-theme="daylight"] .panel,html[data-theme="daylight"] .tabbar{background:rgba(255,255,255,.92)}
+  html[data-theme="porcelain"] .panel,html[data-theme="porcelain"] .tabbar{background:rgba(255,253,249,.93)}
+  html[data-theme="midnight"] .panel,html[data-theme="midnight"] .tabbar{background:rgba(32,34,48,.95)}
+  html[data-theme="graphite"] .panel,html[data-theme="graphite"] .tabbar{background:rgba(44,48,55,.95)}
 }
 @media (prefers-reduced-transparency:reduce){
-  html[data-theme="glass"] .panel{background:rgba(255,255,255,.95);backdrop-filter:none;-webkit-backdrop-filter:none}
-  html[data-theme="glassdark"] .panel{background:rgba(30,32,42,.96);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .panel,.tabbar,.sheet{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+  html[data-theme="daylight"] .panel{background:rgba(255,255,255,.96)}
+  html[data-theme="porcelain"] .panel{background:rgba(255,253,249,.96)}
+  html[data-theme="midnight"] .panel{background:rgba(32,34,48,.97)}
+  html[data-theme="graphite"] .panel{background:rgba(44,48,55,.97)}
 }
 .ph{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;min-height:32px}
 .ph h2,.ph h3{min-width:0}
@@ -253,7 +316,7 @@ html[data-theme="oled"] .panel:hover{border-color:rgba(201,162,39,.35)}
 .btn.bad{background:color-mix(in srgb,var(--danger) 22%,transparent);color:var(--danger);border-color:transparent}
 .btn.ghost{background:transparent;border-color:transparent}
 .btn.round{width:84px;height:84px;padding:0;border-radius:50%;font-size:15px;box-shadow:0 0 0 3px var(--bg),0 0 0 4.5px currentColor}
-html[data-theme^="glass"] .btn.round{box-shadow:var(--spec),0 6px 20px rgba(0,0,0,.12)}
+html:not([data-theme="oled"]) .btn.round{box-shadow:var(--spec),0 6px 20px rgba(0,0,0,.14)}
 .btn.round.go{background:color-mix(in srgb,var(--accent) 22%,transparent);color:var(--accent)}
 .btn.round.stop{background:color-mix(in srgb,var(--danger) 22%,transparent);color:var(--danger)}
 .btn.round.go2{background:color-mix(in srgb,var(--timer) 24%,transparent);color:var(--timer)}
@@ -316,7 +379,7 @@ html.mo .subj.on .play::after{content:"";position:absolute;inset:-5px;border-rad
 .subj .bar i{display:block;height:100%;border-radius:4px;background:var(--c);transition:width .8s var(--ease)}
 .subj .tm{font-size:17px;font-weight:500}
 .subj.on .tm{color:var(--c)}
-html[data-theme="glass"] .subj.on .tm{color:var(--text)}
+html[data-theme="daylight"] .subj.on .tm,html[data-theme="porcelain"] .subj.on .tm{color:var(--text)}
 .dots{width:34px;height:34px;border-radius:50%;border:0;background:transparent;color:var(--dim);display:grid;place-items:center}
 .dots:hover{background:var(--track)}
 .dots svg{width:18px;height:18px}
@@ -427,8 +490,8 @@ html.mo .lapbars i{animation:grow .5s var(--ease)}
 .chart svg{display:block;width:100%;height:auto;overflow:visible}
 .chart text{fill:var(--dim);font-size:11px;font-family:var(--font-ui)}
 .chart .axis{stroke:var(--line);stroke-width:1}
-html[data-theme^="glass"] .chart .axis{stroke:rgba(20,24,40,.12)}
-html[data-theme="glassdark"] .chart .axis{stroke:rgba(255,255,255,.12)}
+html[data-theme="daylight"] .chart .axis,html[data-theme="porcelain"] .chart .axis{stroke:rgba(20,24,40,.13)}
+html[data-theme="midnight"] .chart .axis,html[data-theme="graphite"] .chart .axis{stroke:rgba(255,255,255,.13)}
 .chart .lbl{fill:var(--text);font-weight:600;font-size:12px}
 .chart .val{fill:var(--dim);font-family:var(--font-num);font-size:10.5px}
 .radar-poly{transform-origin:0 0}
@@ -467,9 +530,7 @@ html.mo .wedge{animation:fadein .8s var(--ease)}
 .sheet{position:fixed;z-index:51;left:50%;bottom:0;width:min(640px,100vw);max-height:88vh;max-height:88dvh;overflow-y:auto;
   transform:translate(-50%,105%);transition:transform .5s var(--spring);border-radius:30px 30px 0 0;
   padding:18px 22px calc(28px + env(safe-area-inset-bottom,0px))}
-html[data-theme="oled"] .sheet{background:#0b0d0f}
-html[data-theme="glass"] .sheet{background:rgba(255,255,255,.82)}
-html[data-theme="glassdark"] .sheet{background:rgba(30,32,42,.86)}
+.sheet{background:var(--sheet-bg)}
 .sheet:not(.on){pointer-events:none;visibility:hidden;transition:transform .45s var(--ease),opacity .25s,visibility 0s .45s}
 .sheet.on{transform:translate(-50%,0)}
 @media (min-width:900px){.sheet{bottom:auto;top:50%;border-radius:30px;transform:translate(-50%,-44%) scale(.94);opacity:0;transition:transform .5s var(--spring),opacity .25s}
@@ -486,17 +547,20 @@ html[data-theme="glassdark"] .sheet{background:rgba(30,32,42,.86)}
 .swatches{display:flex;gap:6px;flex-wrap:wrap}
 .swatches button{width:26px;height:26px;border-radius:50%;border:2px solid transparent;padding:0}
 .swatches button.on{border-color:var(--text);transform:scale(1.1)}
-.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.themes{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px}
 .theme-card{border-radius:18px;border:2px solid var(--line);padding:8px;background:var(--track);text-align:center;font-size:12px;font-weight:600}
 .theme-card.on{border-color:var(--accent)}
 .theme-card .pv{height:70px;border-radius:12px;margin-bottom:6px;position:relative;overflow:hidden}
 .theme-card .pv i{position:absolute;left:10px;right:10px;bottom:10px;height:22px;border-radius:8px}
 .pv-oled{background:#000}.pv-oled i{background:#0c0e10;border:1px solid rgba(255,255,255,.12)}
-.pv-glass{background:linear-gradient(135deg,#ff9ec7,#7ab8ff 60%,#ffd36e)}.pv-glass i{background:rgba(255,255,255,.55);border:1px solid #fff}
-.pv-gd{background:linear-gradient(135deg,#2a1470,#003c85 60%,#5c0d34)}.pv-gd i{background:rgba(40,42,56,.55);border:1px solid rgba(255,255,255,.2)}
+.pv-midnight{background:linear-gradient(135deg,#2a1470,#003c85 60%,#5c0d34)}.pv-midnight i{background:rgba(40,42,56,.5);border:1px solid rgba(255,255,255,.22)}
+.pv-graphite{background:linear-gradient(135deg,#2b3540,#39515e 55%,#4a4356)}.pv-graphite i{background:rgba(70,76,86,.5);border:1px solid rgba(255,255,255,.24)}
+.pv-daylight{background:linear-gradient(135deg,#ff9ec7,#7ab8ff 60%,#ffd36e)}.pv-daylight i{background:rgba(255,255,255,.55);border:1px solid #fff}
+.pv-porcelain{background:linear-gradient(135deg,#ffcfae,#ffe8b0 50%,#cfe3c2)}.pv-porcelain i{background:rgba(255,253,249,.6);border:1px solid #fff}
+.theme-group{font-size:12px;color:var(--dim);font-weight:700;margin:12px 4px 6px}
 .note{font-size:12px;color:var(--dim);line-height:1.55;margin:8px 4px 0}
 .note code{font-family:var(--font-num);font-size:11px;background:var(--track);padding:1px 5px;border-radius:5px}
-.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 70px);z-index:90;transform:translate(-50%,-20px) scale(.9);opacity:0;
+.toast{display:flex;align-items:center;gap:12px;position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 70px);z-index:90;transform:translate(-50%,-20px) scale(.9);opacity:0;
   background:#000;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.3);
   transition:transform .45s var(--spring),opacity .25s;pointer-events:none;max-width:90vw;text-align:center}
 .toast.on{transform:translate(-50%,0);opacity:1}
@@ -525,6 +589,20 @@ html.vt-theme::view-transition-new(root){z-index:2}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
 }
+
+.toast .tbtn{appearance:none;border:0;background:rgba(255,255,255,.18);color:#fff;font:inherit;font-size:13px;font-weight:700;
+  padding:5px 12px;border-radius:999px;pointer-events:auto}
+.toast.on{pointer-events:auto}
+.ibtn.sm{width:34px;height:34px;flex:none}
+.ibtn.sm svg{width:15px;height:15px}
+.li.snd{cursor:pointer}
+.li.snd.on .lt{color:var(--accent);font-weight:700}
+.li .tick{width:22px;color:var(--accent);display:flex}
+.li .tick svg{width:20px;height:20px}
+.sound-row{display:flex;align-items:center;gap:8px}
+.pill-pick{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);
+  background:var(--btn);font-size:13px;font-weight:600;max-width:200px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.pill-pick svg{width:16px;height:16px;flex:none}
 
 </style>
 </head>
@@ -599,9 +677,12 @@ function defaults() {
     alarms: [],
     pomo: { work: 25, short: 5, long: 15, every: 4, sid: 'cp', breakSid: 'brk', on: false, phase: 'work', idx: 0, endAt: 0 },
     settings: {
-      theme: 'oled', ga: .42, dayStart: 5, goalMin: 360, sound: true, picker: 'slider', swMode: 'digital', tab: 'today',
-      tg: { token: '', chat: '', chatName: '', bot: '', time: '23:30', auto: true, catchup: true, photo: true, since: '' },
-      sent: {}, installed: 0
+      theme: 'midnight', ga: .42, dayStart: 5, goalMin: 360, sound: true, picker: 'slider', swMode: 'digital', tab: 'today',
+      swipe: true, maxSessionH: 6,
+      sounds: { on: true, volume: .8, timer: 'chime', alarm: 'radar', pomo: 'marimba', vibrate: true, repeat: true },
+      customSounds: [],
+      tg: { token: '', chat: '', chatName: '', bot: '', time: '23:30', auto: true, catchup: true, photo: true, weekly: true, since: '' },
+      sent: {}, sentW: {}, installed: 0, lastBackup: 0, hintSwipe: 0
     }
   };
 }
@@ -618,6 +699,10 @@ function load() {
   try { S = merge(defaults(), JSON.parse(localStorage.getItem(KEY) || 'null') || {}); }
   catch (e) { S = defaults(); }
   if (!S.settings.installed) S.settings.installed = Date.now();
+  // migrate older theme ids
+  const TMAP = { glass: 'daylight', glassdark: 'midnight' };
+  if (TMAP[S.settings.theme]) S.settings.theme = TMAP[S.settings.theme];
+  if (typeof S.settings.sound === 'boolean') S.settings.sounds.on = S.settings.sound;
 }
 let saveT = 0;
 function saveNow() {
@@ -744,7 +829,10 @@ const P = {
   trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>',
   flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
   bell: '<path d="M6 9a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 21h4"/>',
-  coffee: '<path d="M4 9h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6zM17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3"/>'
+  coffee: '<path d="M4 9h13v5a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6zM17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7"/>',
+  music: '<path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.8"/><circle cx="17.5" cy="16" r="2.8"/>',
+  undo: '<path d="M4 9h11a5 5 0 0 1 0 10h-3M4 9l4-4M4 9l4 4"/>'
 };
 function ic(n, extra = '') { return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${P[n] || ''}</svg>`; }
 
@@ -791,8 +879,15 @@ function renderView(id = curTab) {
 function refresh() { renderView(); renderTop(); }
 
 /* theme */
-const THEMES = ['oled', 'glassdark', 'glass'];
-const THEME_NAMES = { oled: 'OLED', glassdark: 'Liquid Glass Dark', glass: 'Liquid Glass' };
+const THEME_LIST = [
+  { id: 'midnight', name: 'Midnight Glass', group: 'dark' },
+  { id: 'graphite', name: 'Graphite Glass', group: 'dark' },
+  { id: 'oled', name: 'OLED Noir', group: 'dark' },
+  { id: 'daylight', name: 'Daylight Glass', group: 'light' },
+  { id: 'porcelain', name: 'Porcelain', group: 'light' }
+];
+const THEMES = THEME_LIST.map(t => t.id);
+const THEME_NAMES = THEME_LIST.reduce((o, t) => (o[t.id] = t.name, o), {});
 function applyGlass() {
   const g = +S.settings.ga;
   document.documentElement.style.setProperty('--ga', g.toFixed(2));
@@ -819,10 +914,26 @@ function setTheme(th, ev) {
 
 /* toast */
 let toastT = 0;
-function toast(msg, ms = 2400) {
+function toast(msg, ms = 2400, action) {
   const t = $('#toast'); if (!t) return;
-  t.textContent = msg; t.classList.add('on');
+  t.innerHTML = '<span></span>';
+  t.firstChild.textContent = msg;
+  if (action) {
+    const b = document.createElement('button');
+    b.className = 'tbtn'; b.textContent = action.label;
+    b.onclick = () => { t.classList.remove('on'); action.fn(); };
+    t.appendChild(b);
+  }
+  t.classList.add('on');
   clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), ms);
+}
+/* in-app confirm (replaces window.confirm) */
+function confirmSheet(title, body, okLabel, onOk, danger) {
+  openSheet(`<h2>${esc(title)}</h2><p class="note" style="font-size:14px;margin:0 4px 6px">${esc(body || '')}</p>
+    <div class="row" style="justify-content:flex-end;margin-top:16px;gap:8px">
+      <button class="btn" data-cf="0">Cancel</button>
+      <button class="btn ${danger ? 'bad' : 'pri'}" data-cf="1">${esc(okLabel || 'OK')}</button></div>`,
+    sh => { sh.onclick = e => { const b = e.target.closest('[data-cf]'); if (!b) return; const ok = b.dataset.cf === '1'; closeSheet(); if (ok) setTimeout(onOk, 120); }; });
 }
 
 /* sheet */
@@ -929,14 +1040,6 @@ function openDdays() {
 }
 
 /* alerts (timer / alarm ringing) */
-let ringLoop = 0, ringStop = 0;
-function startRinging(kind) {
-  stopRinging();
-  chime(kind); if (navigator.vibrate) try { navigator.vibrate([300, 150, 300]); } catch (e) { }
-  ringLoop = setInterval(() => chime(kind), 2200);
-  ringStop = setTimeout(stopRinging, 60000);
-}
-function stopRinging() { clearInterval(ringLoop); clearTimeout(ringStop); ringLoop = 0; }
 function notify(title, body) {
   try { if ('Notification' in window && Notification.permission === 'granted') new Notification(title, { body, tag: 'com-' + title }); } catch (e) { }
 }
@@ -1000,29 +1103,242 @@ function focusClick(e) {
   drawFocus(true);
 }
 
-/* ═══ AUDIO ══════════════════════════════════════════ */
-let AC = null;
+/* ═══ SWIPE BETWEEN TABS (iOS-style page drag) ══════ */
+const NO_SWIPE = '.wheel,.ruler,.presets,.heat,.lapbars,input[type=range],.tabbar,[data-noswipe],.wcol';
+function initSwipe() {
+  const main = document.querySelector('main');
+  let x0 = 0, y0 = 0, t0 = 0, dx = 0, axis = '', cur = null, nxt = null, dir = 0, W = 1, active = false;
+  const idxOf = id => TABS.findIndex(t => t[0] === id);
+  const viewEl = id => $('#v-' + id);
+  const clean = () => {
+    if (cur) { cur.classList.remove('sliding'); cur.style.transform = ''; }
+    if (nxt) { nxt.classList.remove('sliding', 'peek'); nxt.style.transform = ''; }
+    cur = nxt = null; axis = ''; active = false; dir = 0;
+  };
+  main.addEventListener('touchstart', e => {
+    if (!S.settings.swipe || e.touches.length !== 1) return;
+    if ($('#sheet').classList.contains('on') || focusOn) return;
+    if (e.target.closest(NO_SWIPE)) return;
+    const t = e.touches[0];
+    x0 = t.clientX; y0 = t.clientY; t0 = Date.now(); dx = 0; axis = ''; active = true;
+    W = main.clientWidth || innerWidth;
+    cur = viewEl(curTab); nxt = null;
+  }, { passive: true });
+  main.addEventListener('touchmove', e => {
+    if (!active || !cur) return;
+    const t = e.touches[0], ax = t.clientX - x0, ay = t.clientY - y0;
+    if (!axis) {
+      if (Math.abs(ax) < 8 && Math.abs(ay) < 8) return;
+      axis = Math.abs(ax) > Math.abs(ay) * 1.3 ? 'x' : 'y';
+      if (axis === 'y') { active = false; return; }
+    }
+    if (axis !== 'x') return;
+    e.preventDefault();
+    const i = idxOf(curTab), want = ax < 0 ? 1 : -1;
+    if (want !== dir) {
+      if (nxt) { nxt.classList.remove('peek'); nxt.style.transform = ''; }
+      dir = want;
+      const j = i + dir;
+      if (j >= 0 && j < TABS.length) {
+        const id = TABS[j][0];
+        nxt = viewEl(id);
+        renderView(id);
+        nxt.classList.add('peek');
+      } else nxt = null;
+    }
+    dx = nxt ? ax : ax * .28;                       // rubber band at the ends
+    cur.style.transform = `translate3d(${dx}px,0,0)`;
+    if (nxt) nxt.style.transform = `translate3d(${dx + dir * W}px,0,0)`;
+  }, { passive: false });
+  const end = () => {
+    if (!active || axis !== 'x' || !cur) { clean(); return; }
+    const v = Math.abs(dx) / Math.max(1, Date.now() - t0);
+    const go2 = nxt && (Math.abs(dx) > W * .28 || v > .45);
+    cur.classList.add('sliding'); if (nxt) nxt.classList.add('sliding');
+    if (go2) {
+      const id = TABS[idxOf(curTab) + dir][0];
+      cur.style.transform = `translate3d(${-dir * W}px,0,0)`;
+      nxt.style.transform = 'translate3d(0,0,0)';
+      const c = cur, n = nxt;
+      setTimeout(() => { c.classList.remove('sliding'); c.style.transform = ''; n.classList.remove('sliding', 'peek'); n.style.transform = ''; applyTab(id); }, 300);
+      cur = nxt = null; active = false; axis = '';
+      if (navigator.vibrate) try { navigator.vibrate(6); } catch (e) { }
+    } else {
+      cur.style.transform = 'translate3d(0,0,0)';
+      if (nxt) nxt.style.transform = `translate3d(${dir * W}px,0,0)`;
+      const c = cur, n = nxt;
+      setTimeout(() => { c.classList.remove('sliding'); c.style.transform = ''; if (n) { n.classList.remove('sliding', 'peek'); n.style.transform = ''; } }, 300);
+      cur = nxt = null; active = false; axis = '';
+    }
+  };
+  main.addEventListener('touchend', end);
+  main.addEventListener('touchcancel', () => { if (cur) { cur.style.transform = ''; } if (nxt) { nxt.classList.remove('peek'); nxt.style.transform = ''; } clean(); });
+}
+
+/* ═══ SOUND ENGINE ═══════════════════════════════════ */
+let AC = null, MASTER = null;
 function ac() {
   try {
-    if (!AC) { const C = window.AudioContext || window.webkitAudioContext; if (C) AC = new C(); }
-    if (AC && AC.state === 'suspended') AC.resume();
+    if (!AC) {
+      const C = window.AudioContext || window.webkitAudioContext;
+      if (C) { AC = new C(); MASTER = AC.createGain(); MASTER.connect(AC.destination); }
+    }
+    if (AC) { MASTER.gain.value = clamp(S.settings.sounds.volume, 0, 1); if (AC.state === 'suspended') AC.resume(); }
   } catch (e) { }
   return AC;
 }
-function chime(kind = 'done') {
-  if (!S.settings.sound) return;
-  const a = ac(); if (!a) return;
-  const t = a.currentTime;
-  const notes = kind === 'alarm' ? [988, 1319, 988, 1319, 1568] : kind === 'soft' ? [660, 880] : [880, 1175, 1568];
-  notes.forEach((f, i) => {
-    const o = a.createOscillator(), g = a.createGain(), st = t + i * .17;
-    o.type = 'sine'; o.frequency.value = f;
-    g.gain.setValueAtTime(0.0001, st);
-    g.gain.exponentialRampToValueAtTime(.28, st + .02);
-    g.gain.exponentialRampToValueAtTime(.0001, st + .95);
-    o.connect(g); g.connect(a.destination);
-    o.start(st); o.stop(st + 1);
+function voice(a, t, { f, dur, type = 'sine', peak = .3, to, curve = 'exp', detune = 0 }) {
+  const o = a.createOscillator(), g = a.createGain();
+  o.type = type; o.frequency.setValueAtTime(f, t); o.detune.value = detune;
+  if (to) o.frequency.exponentialRampToValueAtTime(to, t + dur);
+  g.gain.setValueAtTime(.0001, t);
+  g.gain.exponentialRampToValueAtTime(peak, t + (curve === 'pad' ? dur * .35 : .012));
+  g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  o.connect(g); g.connect(MASTER);
+  o.start(t); o.stop(t + dur + .05);
+  return o;
+}
+function bell(a, t, f, dur, peak = .3) {
+  const car = a.createOscillator(), mod = a.createOscillator(), mg = a.createGain(), g = a.createGain();
+  car.frequency.value = f; mod.frequency.value = f * 2.41;
+  mg.gain.setValueAtTime(f * 3.2, t); mg.gain.exponentialRampToValueAtTime(1, t + dur * .7);
+  mod.connect(mg); mg.connect(car.frequency);
+  g.gain.setValueAtTime(.0001, t);
+  g.gain.exponentialRampToValueAtTime(peak, t + .008);
+  g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+  car.connect(g); g.connect(MASTER);
+  mod.start(t); car.start(t); mod.stop(t + dur); car.stop(t + dur + .05);
+}
+const N = { C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99, A5: 880, B5: 987.77, C6: 1046.5, D6: 1174.7, E6: 1318.5, G6: 1568, A6: 1760, C4: 261.63, E4: 329.63, G4: 392, A4: 440 };
+const SOUNDS = [
+  { id: 'chime', name: 'Chime', d: 1.3, play: (a, t) => [N.A5, N.D6, N.G6].forEach((f, i) => bell(a, t + i * .17, f, 1.1)) },
+  { id: 'radar', name: 'Radar', d: 2.2, play: (a, t) => { for (let i = 0; i < 6; i++) voice(a, t + i * .32, { f: N.C6, dur: .28, type: 'triangle', peak: .12 + i * .035 }); voice(a, t, { f: 180, to: 320, dur: 1.9, type: 'sine', peak: .1 }); } },
+  { id: 'beacon', name: 'Beacon', d: 1.8, play: (a, t) => { for (let i = 0; i < 4; i++) { voice(a, t + i * .42, { f: i % 2 ? N.E6 : N.A5, dur: .3, type: 'sine', peak: .3 }); voice(a, t + i * .42, { f: i % 2 ? N.E5 : N.A4, dur: .32, type: 'sine', peak: .14 }); } } },
+  { id: 'marimba', name: 'Marimba', d: 1.4, play: (a, t) => [N.C5, N.E5, N.G5, N.C6].forEach((f, i) => { voice(a, t + i * .13, { f, dur: .5, type: 'triangle', peak: .3 }); voice(a, t + i * .13, { f: f * 4, dur: .12, type: 'sine', peak: .08 }); }) },
+  { id: 'bells', name: 'Bells', d: 2.6, play: (a, t) => { bell(a, t, N.G5, 2.4, .32); bell(a, t + .55, N.C6, 2, .26); bell(a, t + 1.2, N.E6, 1.6, .2); } },
+  { id: 'harp', name: 'Harp', d: 1.7, play: (a, t) => [N.C5, N.E5, N.G5, N.C6, N.E6, N.G6].forEach((f, i) => voice(a, t + i * .075, { f, dur: 1.1 - i * .08, type: 'triangle', peak: .24 })) },
+  { id: 'ripple', name: 'Ripple', d: 1.9, play: (a, t) => { voice(a, t, { f: N.G5, to: N.E6, dur: .9, type: 'sine', peak: .26, curve: 'pad' }); voice(a, t + .7, { f: N.E6, to: N.G5, dur: 1, type: 'sine', peak: .2, curve: 'pad' }); voice(a, t + .2, { f: N.C5, dur: 1.4, type: 'sine', peak: .1, curve: 'pad' }); } },
+  { id: 'sonar', name: 'Sonar', d: 2.4, play: (a, t) => { for (let i = 0; i < 3; i++) { voice(a, t + i * .8, { f: 660, to: 300, dur: .7, type: 'sine', peak: .28 }); voice(a, t + i * .8 + .02, { f: 330, to: 150, dur: 1.1, type: 'sine', peak: .12 }); } } },
+  { id: 'digital', name: 'Digital', d: 1.6, play: (a, t) => { for (let i = 0; i < 6; i++) voice(a, t + i * .22, { f: 1000, dur: .11, type: 'square', peak: .28 }); } },
+  { id: 'ascend', name: 'Ascend', d: 1.5, play: (a, t) => [N.C5, N.E5, N.G5, N.B5, N.E6].forEach((f, i) => voice(a, t + i * .14, { f, dur: .8, type: 'sine', peak: .26 })) },
+  { id: 'blip', name: 'Blip', d: .35, play: (a, t) => { voice(a, t, { f: N.G5, dur: .1, type: 'sine', peak: .26 }); voice(a, t + .09, { f: N.C6, dur: .18, type: 'sine', peak: .18 }); } },
+  { id: 'none', name: 'Silent', d: 0, play: () => { } }
+];
+const soundById = id => SOUNDS.find(s => s.id === id);
+function soundName(id) {
+  if (!id) return 'Chime';
+  if (String(id).startsWith('custom:')) { const c = (S.settings.customSounds || []).find(x => x.id === id); return c ? c.name : 'Custom sound'; }
+  const s = soundById(id); return s ? s.name : 'Chime';
+}
+
+/* custom sound files (IndexedDB) */
+const customURL = {};
+function idb() {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open('clockOfMaster.sounds', 1);
+    r.onupgradeneeded = () => { if (!r.result.objectStoreNames.contains('files')) r.result.createObjectStore('files', { keyPath: 'id' }); };
+    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
   });
+}
+async function idbPut(rec) { const db = await idb(); return new Promise((res, rej) => { const t = db.transaction('files', 'readwrite'); t.objectStore('files').put(rec); t.oncomplete = res; t.onerror = () => rej(t.error); }); }
+async function idbGet(id) { const db = await idb(); return new Promise((res, rej) => { const q = db.transaction('files').objectStore('files').get(id); q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error); }); }
+async function idbDel(id) { const db = await idb(); return new Promise(res => { const t = db.transaction('files', 'readwrite'); t.objectStore('files').delete(id); t.oncomplete = res; }); }
+async function loadCustomSounds() {
+  for (const c of S.settings.customSounds || []) {
+    if (customURL[c.id]) continue;
+    try { const r = await idbGet(c.id); if (r && r.blob) customURL[c.id] = URL.createObjectURL(r.blob); } catch (e) { }
+  }
+}
+async function addCustomSound(file) {
+  if (!file) return;
+  if (file.size > 6e6) return toast('That file is too big (max 6 MB)');
+  const id = 'custom:' + uid(), name = file.name.replace(/\.[^.]+$/, '').slice(0, 28);
+  try {
+    await idbPut({ id, name, blob: file });
+    S.settings.customSounds = [...(S.settings.customSounds || []), { id, name }];
+    customURL[id] = URL.createObjectURL(file);
+    saveNow(); toast('Added “' + name + '”');
+    return id;
+  } catch (e) { toast('Could not save that file: ' + e.message); }
+}
+async function removeCustomSound(id) {
+  S.settings.customSounds = (S.settings.customSounds || []).filter(c => c.id !== id);
+  const s = S.settings.sounds;
+  ['timer', 'alarm', 'pomo'].forEach(k => { if (s[k] === id) s[k] = 'chime'; });
+  S.timers.forEach(t => { if (t.sound === id) t.sound = ''; });
+  S.alarms.forEach(a => { if (a.sound === id) a.sound = ''; });
+  try { await idbDel(id); } catch (e) { }
+  if (customURL[id]) { URL.revokeObjectURL(customURL[id]); delete customURL[id]; }
+  saveNow();
+}
+
+/* playback */
+let audioEl = null;
+function playSound(id) {
+  const st = S.settings.sounds;
+  if (!st.on || !id || id === 'none') return 0;
+  if (String(id).startsWith('custom:')) {
+    const u = customURL[id];
+    if (!u) { loadCustomSounds(); return 0; }
+    try {
+      if (!audioEl) audioEl = new Audio();
+      audioEl.src = u; audioEl.volume = clamp(st.volume, 0, 1); audioEl.currentTime = 0;
+      const p = audioEl.play(); if (p && p.catch) p.catch(() => { });
+      return 6;
+    } catch (e) { return 0; }
+  }
+  const s = soundById(id) || soundById('chime');
+  const a = ac(); if (!a) return 0;
+  try { s.play(a, a.currentTime + .02); } catch (e) { }
+  return s.d;
+}
+function stopAudioEl() { if (audioEl) { try { audioEl.pause(); audioEl.currentTime = 0; } catch (e) { } } }
+/* legacy hook: chime('done'|'alarm'|'soft') */
+function chime(kind = 'done') {
+  const s = S.settings.sounds;
+  playSound(kind === 'alarm' ? s.alarm : kind === 'soft' ? 'blip' : kind === 'pomo' ? s.pomo : s.timer);
+}
+let ringLoop = 0, ringStop = 0;
+function startRinging(id) {
+  stopRinging();
+  const st = S.settings.sounds;
+  const sid = id || st.timer;
+  const d = playSound(sid);
+  if (st.vibrate && navigator.vibrate) try { navigator.vibrate([300, 150, 300]); } catch (e) { }
+  if (st.repeat && d) {
+    ringLoop = setInterval(() => {
+      playSound(sid);
+      if (st.vibrate && navigator.vibrate) try { navigator.vibrate(220); } catch (e) { }
+    }, Math.max(1400, d * 1000 + 700));
+    ringStop = setTimeout(stopRinging, 60000);
+  }
+}
+function stopRinging() { clearInterval(ringLoop); clearTimeout(ringStop); ringLoop = 0; stopAudioEl(); }
+
+/* picker */
+function openSoundPicker(current, onPick, title = 'Sound') {
+  const row = (id, name, extra = '') => `<div class="li snd ${current === id ? 'on' : ''}" data-pick="${id}">
+    <button class="ibtn sm" data-prev="${id}" aria-label="Preview ${esc(name)}">${ic('play')}</button>
+    <div class="lt">${esc(name)}</div>${extra}
+    <span class="tick">${current === id ? ic('check') : ''}</span></div>`;
+  openSheet(`<h2>${esc(title)}</h2>
+    <div class="list">${SOUNDS.filter(s => s.id !== 'blip').map(s => row(s.id, s.name)).join('')}</div>
+    <div class="sec"><h3>My sounds</h3><div class="list" id="csList">${(S.settings.customSounds || []).map(c => row(c.id, c.name, `<button class="dots" data-cdel="${c.id}" aria-label="Delete">${ic('trash')}</button>`)).join('') || '<div class="empty" style="padding:14px">No files added yet.</div>'}</div>
+      <label class="btn sm" style="margin-top:10px;cursor:pointer">${ic('plus')} Add sound file<input type="file" accept="audio/*" id="csFile" hidden></label>
+      <p class="note">MP3, M4A, WAV or CAF up to 6 MB. Files stay on this device.</p></div>
+    <div class="sec"><h3>Volume</h3><div class="list"><div class="li"><div class="lt">Loudness</div><input type="range" min="0" max="1" step="0.05" id="sndVol" value="${S.settings.sounds.volume}" style="max-width:220px"></div></div></div>`,
+    sh => {
+      $('#csFile', sh).onchange = async e => { const id = await addCustomSound(e.target.files[0]); if (id) { onPick(id); closeSheet(); } };
+      $('#sndVol', sh).oninput = e => { S.settings.sounds.volume = +e.target.value; if (MASTER) MASTER.gain.value = +e.target.value; save(); };
+      sh.onclick = async e => {
+        const d = e.target.closest('[data-cdel]');
+        if (d) { await removeCustomSound(d.dataset.cdel); closeSheet(); openSoundPicker(current, onPick, title); return; }
+        const p = e.target.closest('[data-prev]');
+        if (p) { ac(); playSound(p.dataset.prev); return; }
+        const r = e.target.closest('[data-pick]');
+        if (r) { ac(); onPick(r.dataset.pick); saveNow(); closeSheet(); }
+      };
+    }, () => { stopAudioEl(); refresh(); });
 }
 
 /* ═══ SVG helpers ════════════════════════════════════ */
@@ -1207,9 +1523,10 @@ function openSubjects(focusId) {
         if (d) {
           const s = subj(d.dataset.sjDel);
           const used = S.sessions.some(x => x.sid === s.id);
-          if (!confirm(`Delete “${s.name}”?${used ? ' Its past sessions stay in history as “Deleted subject” and stop counting as study.' : ''}`)) return;
-          if (S.running && S.running.sid === s.id) stopSubject(Date.now(), true);
-          S.subjects = S.subjects.filter(x => x.id !== s.id); saveNow(); draw(sh);
+          confirmSheet(`Delete “${s.name}”?`, used ? 'Its past sessions stay in history as “Deleted subject” and stop counting as study.' : 'This subject has no recorded time yet.', 'Delete', () => {
+            if (S.running && S.running.sid === s.id) stopSubject(Date.now(), true);
+            S.subjects = S.subjects.filter(x => x.id !== s.id); saveNow(); openSubjects();
+          }, true);
         }
       };
     }, () => { refresh(); });
@@ -1217,7 +1534,7 @@ function openSubjects(focusId) {
 
 /* ═══ TIMERS ═════════════════════════════════════════ */
 let pick = 15 * MIN;              // selected duration in ms
-let pickLabel = '', pickSid = '';
+let pickLabel = '', pickSid = '', pickSound = '';
 const PRESETS = [1, 3, 5, 10, 15, 25, 30, 45, 60, 90].map(m => m * MIN);
 
 /* ruler mapping: first half = 0–15 min in 15 s steps, second half = 15–180 min in 1 min steps */
@@ -1231,9 +1548,9 @@ function msToFrac(ms) {
   if (m <= 15) return m / 15 * .5;
   return .5 + clamp((m - 15) / 165, 0, 1) * .5;
 }
-function startTimer(dur, label, sid) {
+function startTimer(dur, label, sid, sound) {
   if (dur < SEC) return toast('Pick a duration first');
-  S.timers.push({ id: uid(), label: label || '', dur, sid: sid || '', state: 'run', endAt: Date.now() + dur, remain: dur });
+  S.timers.push({ id: uid(), label: label || '', dur, sid: sid || '', sound: sound || S.settings.sounds.timer, state: 'run', endAt: Date.now() + dur, remain: dur });
   S.recents = [{ dur, label: label || '' }, ...S.recents.filter(r => !(r.dur === dur && r.label === (label || '')))].slice(0, 8);
   if (sid) startSubject(sid, true);
   ac(); saveNow(); refresh();
@@ -1257,7 +1574,7 @@ function checkTimers() {
       if (S.timerLog.length > 500) S.timerLog = S.timerLog.slice(-500);
       if (t.sid && S.running && S.running.sid === t.sid && !S.pomo.on) stopSubject(now, true);
       saveNow();
-      startRinging('done');
+      startRinging(t.sound || S.settings.sounds.timer);
       notify('Timer done', (t.label || durLabel(t.dur)) + ' finished');
       ringAlert(t.label || 'Timer', durLabel(t.dur) + ' done', [
         { label: 'Stop', cls: 'pri', fn: () => timerAction(t.id, 'cancel') },
@@ -1288,12 +1605,12 @@ function checkPomo() {
     p.phase = p.idx % p.every === 0 ? 'long' : 'short';
     p.endAt = now + (p.phase === 'long' ? p.long : p.short) * MIN;
     if (subj(p.breakSid)) startSubject(p.breakSid, true); else stopSubject(now, true);
-    chime('soft'); notify('Break time', `${p.phase === 'long' ? p.long : p.short} min break`);
+    playSound(S.settings.sounds.pomo); notify('Break time', `${p.phase === 'long' ? p.long : p.short} min break`);
     toast(`Round ${p.idx} done — ${p.phase === 'long' ? 'long' : 'short'} break`);
   } else {
     p.phase = 'work'; p.endAt = now + p.work * MIN;
     startSubject(p.sid, true);
-    chime('done'); notify('Back to focus', `${p.work} min on ${nameOf(p.sid)}`);
+    playSound(S.settings.sounds.pomo); notify('Back to focus', `${p.work} min on ${nameOf(p.sid)}`);
     toast('Break over — focus');
   }
   saveNow(); refresh();
@@ -1326,6 +1643,7 @@ Views.timer = {
         <div class="row wrapf" style="margin-top:10px">
           <input class="inp" id="tLabel" placeholder="Label (optional)" value="${esc(pickLabel)}" style="flex:1;min-width:150px">
           <select class="inp" id="tSid" style="flex:1;min-width:150px" aria-label="Count time toward subject">${subjOptions(pickSid, 'Don’t track time')}</select>
+          <button class="pill-pick" data-act="t-sound" aria-label="Choose sound">${ic('music')} ${esc(soundName(pickSound || S.settings.sounds.timer))}</button>
         </div>
         <div class="bottom-ctrls">
           <button class="btn round neutral" data-act="t-clear">Clear</button>
@@ -1631,16 +1949,20 @@ function openCityAdd() {
     sh.onclick = e => { const r = e.target.closest('[data-cz]'); if (r) { S.cities.push(r.dataset.cz); saveNow(); closeSheet(); } };
   }, () => refresh());
 }
-function openAlarmAdd() {
+function openAlarmAdd(draft) {
+  const D = draft || { time: '07:00', label: '', days: [], sound: S.settings.sounds.alarm };
   openSheet(`<h2>New alarm</h2>
-    <div class="row wrapf"><input class="inp num" type="time" id="alT" value="07:00" style="flex:1;min-width:140px;font-size:22px;height:54px"><input class="inp" id="alL" placeholder="Label" style="flex:2;min-width:160px;height:54px"></div>
-    <div class="sec"><h3>Repeat (leave empty for once)</h3><div class="day-pills">${WD.map((d, i) => `<label><input type="checkbox" value="${i}"><span>${d}</span></label>`).join('')}</div></div>
+    <div class="row wrapf"><input class="inp num" type="time" id="alT" value="${esc(D.time)}" style="flex:1;min-width:140px;font-size:22px;height:54px"><input class="inp" id="alL" placeholder="Label" value="${esc(D.label)}" style="flex:2;min-width:160px;height:54px"></div>
+    <div class="sec"><h3>Repeat (leave empty for once)</h3><div class="day-pills">${WD.map((d, i) => `<label><input type="checkbox" value="${i}" ${D.days.includes(i) ? 'checked' : ''}><span>${d}</span></label>`).join('')}</div></div>
+    <div class="sec"><h3>Sound</h3><button class="pill-pick" id="alSnd">${ic('music')} ${esc(soundName(D.sound))}</button></div>
     <div class="row" style="justify-content:flex-end;margin-top:16px"><button class="btn pri" id="alSave">Save alarm</button></div>`, sh => {
+    const grab = () => { D.time = $('#alT', sh).value; D.label = $('#alL', sh).value; D.days = $$('.day-pills input:checked', sh).map(i => +i.value); };
+    $('#alSnd', sh).onclick = () => { grab(); openSoundPicker(D.sound, id => { D.sound = id; openAlarmAdd(D); }, 'Alarm sound'); };
     $('#alSave', sh).onclick = () => {
-      const time = $('#alT', sh).value; if (!time) return toast('Pick a time');
-      const days = $$('.day-pills input:checked', sh).map(i => +i.value);
-      S.alarms.push({ id: uid(), time, label: $('#alL', sh).value.trim(), days, on: true, last: '' });
-      saveNow(); ac(); closeSheet(); toast('Alarm set for ' + time);
+      grab();
+      if (!D.time) return toast('Pick a time');
+      S.alarms.push({ id: uid(), time: D.time, label: D.label.trim(), days: D.days, on: true, last: '', sound: D.sound });
+      saveNow(); ac(); closeSheet(); toast('Alarm set for ' + D.time);
     };
   }, () => refresh());
 }
@@ -1653,7 +1975,7 @@ function checkAlarms() {
     a.last = stamp; a.snooze = 0;
     if (!a.days.length) a.on = false;
     saveNow();
-    startRinging('alarm');
+    startRinging(a.sound || S.settings.sounds.alarm);
     notify('Alarm', a.label || a.time);
     ringAlert(a.label || 'Alarm', a.time, [
       { label: 'Stop', cls: 'pri' },
@@ -2220,6 +2542,44 @@ function reportImage(k) {
     c.toBlob(b => res(b), 'image/png');
   });
 }
+const SPARK = ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'];
+function reportWeekText(k) {
+  const r = rangeOf('week', k), pr = rangeOf('week', prevAnchor('week', k, -1));
+  const map = bucketByDay(pr.from, r.to, false);
+  const sm = rangeSummary(r, map), psm = rangeSummary(pr, map);
+  const goal = S.settings.goalMin * MIN;
+  const days = []; for (let i = 0; i < 7; i++) days.push(shiftKey(r.from, i));
+  const vals = days.map(d => (map[d] || {}).study || 0), mx = Math.max(...vals, 1);
+  const L = [];
+  L.push(`<b>📅 Week summary</b> — ${esc(r.label)}`, '');
+  L.push(`⏱ <b>${hm(sm.study)}</b> studied · ${hm(sm.study / 7)} a day`);
+  const d = sm.study - psm.study;
+  L.push(`📈 ${d >= 0 ? '+' : '−'}${hm(Math.abs(d))} vs last week`);
+  L.push(`<code>${vals.map(v => SPARK[Math.min(7, Math.floor(v / mx * 7.99))]).join(' ')}</code>`);
+  L.push(`<code>${days.map(x => keyDate(x).toLocaleDateString('en-US', { weekday: 'short' })[0]).join(' ')}</code>`);
+  L.push(`🎯 Goal reached on ${sm.hits}/7 days · active ${sm.active}/7 · 🔥 streak ${streakAt(k, false)}d`);
+  if (sm.best && sm.best.ms) L.push(`🥇 Best day ${esc(fmtKey(sm.best.k, { weekday: 'long' }))} — ${hm(sm.best.ms)}`);
+  if (sm.longest) L.push(`🧠 Longest focus ${hm(sm.longest)}`);
+  if (sm.avgStart !== null) L.push(`🌅 Average first start ${pad(Math.floor(sm.avgStart) % 24)}:${pad(Math.round(sm.avgStart % 1 * 60) % 60)}`);
+  const rows = Object.entries(sm.by).sort((a, b) => b[1] - a[1]);
+  if (rows.length) {
+    L.push('', '<b>By subject</b>');
+    for (const [sid, ms] of rows) L.push(`${colorEmoji(colorOf(sid))} ${esc(nameOf(sid).slice(0, 42))} — <b>${hm(ms)}</b> (${Math.round(ms / (sm.study + sm.brk || 1) * 100)}%)`);
+  }
+  L.push('', '<i>Clock of Master · weekly</i>');
+  return L.join('\n');
+}
+async function sendWeekly(k) {
+  if (!TG.ready() || tgBusy) return false;
+  tgBusy = true;
+  try {
+    await TG.call('sendMessage', { chat_id: String(S.settings.tg.chat).trim(), text: reportWeekText(k), parse_mode: 'HTML', disable_web_page_preview: 'true' });
+    S.settings.sentW[rangeOf('week', k).from] = Date.now(); saveNow();
+    toast('Week summary sent ✈️');
+    return true;
+  } catch (e) { tgRetryAt = Date.now() + 5 * MIN; toast('Week summary failed: ' + (e.message || ''), 4000); return false; }
+  finally { tgBusy = false; }
+}
 let tgBusy = false, tgRetryAt = 0;
 async function sendReport(k, opt = {}) {
   if (!TG.ready()) { if (!opt.auto) toast('Add your bot token and chat ID in Settings'); return false; }
@@ -2257,7 +2617,12 @@ function tgAuto() {
   const [h, m] = (t.time || '23:30').split(':').map(Number);
   const [y, mo, d] = parseKey(tk);
   const due = new Date(y, mo, d + (h < ds() ? 1 : 0), h, m).getTime();
-  if (Date.now() >= due && !S.settings.sent[tk]) sendReport(tk, { auto: true });
+  if (Date.now() >= due && !S.settings.sent[tk]) { sendReport(tk, { auto: true }); return; }
+  // weekly summary once the last day of the week has been reported
+  if (t.weekly && S.settings.sent[tk]) {
+    const wk = rangeOf('week', tk);
+    if (wk.to === tk && !S.settings.sentW[wk.from]) sendWeekly(tk);
+  }
 }
 
 /* ═══ SETTINGS ═══════════════════════════════════════ */
@@ -2265,15 +2630,29 @@ function openSettings(section) {
   const st = S.settings, t = st.tg;
   openSheet(`<h2>Settings</h2>
     <div class="sec"><h3>Appearance</h3>
-      <div class="themes">${THEMES.map(th => `<button class="theme-card ${st.theme === th ? 'on' : ''}" data-set-theme="${th}"><div class="pv ${th === 'oled' ? 'pv-oled' : th === 'glass' ? 'pv-glass' : 'pv-gd'}"><i></i></div>${THEME_NAMES[th]}</button>`).join('')}</div>
-      <div class="list" style="margin-top:10px"><div class="li"><div class="lt">Glass translucency<small>Clear ↔ frosted, like iPadOS 27</small></div><input type="range" min="0.12" max="0.85" step="0.01" id="stGa" value="${st.ga}" style="max-width:200px"></div></div>
+      ${['dark', 'light'].map(g => `<div class="theme-group">${g === 'dark' ? 'Dark' : 'Light'}</div>
+        <div class="themes">${THEME_LIST.filter(t => t.group === g).map(t => `<button class="theme-card ${st.theme === t.id ? 'on' : ''}" data-set-theme="${t.id}"><div class="pv pv-${t.id}"><i></i></div>${t.name}</button>`).join('')}</div>`).join('')}
+      <div class="list" style="margin-top:12px">
+        <div class="li"><div class="lt">Glass translucency<small>Clear ↔ frosted, like iPadOS 27</small></div><input type="range" min="0.12" max="0.85" step="0.01" id="stGa" value="${st.ga}" style="max-width:200px"></div>
+        <div class="li"><div class="lt">Swipe between tabs<small>Drag left or right anywhere on a page</small></div><label class="switch"><input type="checkbox" id="stSwipe" ${st.swipe ? 'checked' : ''}><span></span></label></div>
+      </div>
     </div>
     <div class="sec"><h3>Your day</h3><div class="list">
       <div class="li"><div class="lt">Day starts at<small>Late-night work still counts toward the day before</small></div><select class="inp" id="stDs" style="width:100px">${Array.from({ length: 13 }, (_, h) => `<option value="${h}" ${st.dayStart === h ? 'selected' : ''}>${pad(h)}:00</option>`).join('')}</select></div>
       <div class="li"><div class="lt">Daily study goal<small>Minutes of “counts as study” time</small></div><input class="inp num" type="number" min="0" step="15" id="stGoal" value="${st.goalMin}" style="width:100px"></div>
-      <div class="li"><div class="lt">Sounds<small>Chime for timers, alarms and focus cycles</small></div><button class="btn sm" data-act="test-sound">Test</button><label class="switch"><input type="checkbox" id="stSound" ${st.sound ? 'checked' : ''}><span></span></label></div>
+      <div class="li"><div class="lt">Stop a forgotten session after<small>If you leave a subject running</small></div><select class="inp" id="stMax" style="width:110px">${[0, 3, 4, 6, 8, 12].map(h => `<option value="${h}" ${st.maxSessionH === h ? 'selected' : ''}>${h ? h + ' hours' : 'Never'}</option>`).join('')}</select></div>
       <div class="li"><div class="lt">Notifications<small>Works on iPad after “Add to Home Screen”</small></div><button class="btn sm" data-act="notif">${'Notification' in window ? (Notification.permission === 'granted' ? 'Allowed' : 'Allow') : 'Unsupported'}</button></div>
     </div></div>
+    <div class="sec"><h3>Sounds</h3><div class="list">
+      <div class="li"><div class="lt">Sound on</div><label class="switch"><input type="checkbox" id="sndOn" ${st.sounds.on ? 'checked' : ''}><span></span></label></div>
+      <div class="li"><div class="lt">Timer</div><button class="pill-pick" data-snd="timer">${ic('music')} ${esc(soundName(st.sounds.timer))}</button></div>
+      <div class="li"><div class="lt">Alarm</div><button class="pill-pick" data-snd="alarm">${ic('music')} ${esc(soundName(st.sounds.alarm))}</button></div>
+      <div class="li"><div class="lt">Focus cycle</div><button class="pill-pick" data-snd="pomo">${ic('music')} ${esc(soundName(st.sounds.pomo))}</button></div>
+      <div class="li"><div class="lt">Volume</div><input type="range" min="0" max="1" step="0.05" id="sndVol2" value="${st.sounds.volume}" style="max-width:200px"></div>
+      <div class="li"><div class="lt">Keep ringing until I stop it<small>Otherwise it plays once</small></div><label class="switch"><input type="checkbox" id="sndRep" ${st.sounds.repeat ? 'checked' : ''}><span></span></label></div>
+      <div class="li"><div class="lt">Vibrate<small>Where the device supports it</small></div><label class="switch"><input type="checkbox" id="sndVib" ${st.sounds.vibrate ? 'checked' : ''}><span></span></label></div>
+    </div>
+    <p class="note">Ten built-in tones plus your own files. Add a sound with <b>Timer → ${'Add sound file'}</b> inside any picker.</p></div>
     <div class="sec" id="secTg"><h3>Telegram daily report</h3><div class="list">
       <div class="li" style="flex-wrap:wrap"><div class="lt" style="min-width:100%">Bot token<small>From @BotFather — stored only on this device</small></div>
         <input class="inp num" id="tgTok" type="password" autocomplete="off" placeholder="123456789:AA…" value="${esc(t.token)}" style="flex:1;min-width:200px"><button class="btn sm" data-act="tg-check">Check</button></div>
@@ -2281,6 +2660,7 @@ function openSettings(section) {
         <input class="inp num" id="tgChat" inputmode="numeric" placeholder="e.g. 512345678" value="${esc(t.chat)}" style="flex:1;min-width:160px"><button class="btn sm" data-act="tg-find">Find my chat ID</button></div>
       <div class="li"><div class="lt">Send automatically at<small>While the app is open; missed days are sent next time it opens</small></div><input class="inp num" type="time" id="tgTime" value="${esc(t.time)}" style="width:120px"><label class="switch"><input type="checkbox" id="tgAuto" ${t.auto ? 'checked' : ''}><span></span></label></div>
       <div class="li"><div class="lt">Catch up missed days<small>Up to 3 days back</small></div><label class="switch"><input type="checkbox" id="tgCatch" ${t.catchup ? 'checked' : ''}><span></span></label></div>
+      <div class="li"><div class="lt">Week summary on Sunday<small>Totals, goal days and a 7-day bar line</small></div><button class="btn sm" data-act="send-week">Send now</button><label class="switch"><input type="checkbox" id="tgWeek" ${t.weekly ? 'checked' : ''}><span></span></label></div>
       <div class="li"><div class="lt">Attach day-dial image</div><label class="switch"><input type="checkbox" id="tgPhoto" ${t.photo ? 'checked' : ''}><span></span></label></div>
       <div class="li"><button class="btn sm" data-act="tg-test">${ic('send')} Send test</button><button class="btn sm pri" data-act="send-report">Send today's report</button><span class="spacer"></span><button class="btn sm" data-act="tg-preview">Preview</button></div>
     </div>
@@ -2297,25 +2677,33 @@ function openSettings(section) {
       $('#stGa', sh).oninput = e => { S.settings.ga = +e.target.value; applyGlass(); save(); };
       $('#stDs', sh).onchange = e => { S.settings.dayStart = +e.target.value; saveNow(); };
       $('#stGoal', sh).onchange = e => { S.settings.goalMin = Math.max(0, +e.target.value || 0); saveNow(); };
-      $('#stSound', sh).onchange = e => { S.settings.sound = e.target.checked; saveNow(); };
+      $('#stSwipe', sh).onchange = e => { S.settings.swipe = e.target.checked; saveNow(); };
+      $('#stMax', sh).onchange = e => { S.settings.maxSessionH = +e.target.value; saveNow(); };
+      $('#sndOn', sh).onchange = e => { S.settings.sounds.on = e.target.checked; S.settings.sound = e.target.checked; saveNow(); };
+      $('#sndRep', sh).onchange = e => { S.settings.sounds.repeat = e.target.checked; saveNow(); };
+      $('#sndVib', sh).onchange = e => { S.settings.sounds.vibrate = e.target.checked; saveNow(); };
+      $('#sndVol2', sh).oninput = e => { S.settings.sounds.volume = +e.target.value; if (MASTER) MASTER.gain.value = +e.target.value; save(); };
       const tgSave = () => {
         const tk = $('#tgTok', sh).value.trim(), ch = $('#tgChat', sh).value.trim();
         if ((tk !== t.token || ch !== String(t.chat)) && tk && ch) t.since = todayKey();
         t.token = tk; t.chat = ch; t.time = $('#tgTime', sh).value || '23:30';
-        t.auto = $('#tgAuto', sh).checked; t.catchup = $('#tgCatch', sh).checked; t.photo = $('#tgPhoto', sh).checked;
+        t.auto = $('#tgAuto', sh).checked; t.catchup = $('#tgCatch', sh).checked; t.photo = $('#tgPhoto', sh).checked; t.weekly = $('#tgWeek', sh).checked;
         saveNow();
       };
-      ['#tgTok', '#tgChat', '#tgTime', '#tgAuto', '#tgCatch', '#tgPhoto'].forEach(id => $(id, sh).onchange = tgSave);
+      ['#tgTok', '#tgChat', '#tgTime', '#tgAuto', '#tgCatch', '#tgPhoto', '#tgWeek'].forEach(id => $(id, sh).onchange = tgSave);
       $('#impFile', sh).onchange = e => {
         const f = e.target.files[0]; if (!f) return;
         f.text().then(txt => {
           const d = JSON.parse(txt);
           if (!d || !Array.isArray(d.sessions)) throw new Error('Not a Clock of Master backup');
-          if (!confirm(`Replace current data with this backup (${d.sessions.length} sessions)?`)) return;
-          S = merge(defaults(), d); saveNow(); document.documentElement.dataset.theme = S.settings.theme; applyGlass(); closeSheet(); toast('Backup restored');
+          confirmSheet('Restore this backup?', `It replaces everything on this device with ${d.sessions.length} sessions from the file.`, 'Restore', () => {
+            S = merge(defaults(), d); saveNow(); document.documentElement.dataset.theme = S.settings.theme; applyGlass(); closeSheet(); toast('Backup restored'); refresh();
+          });
         }).catch(err => toast('Import failed: ' + err.message));
       };
       sh.onclick = async e => {
+        const sp = e.target.closest('[data-snd]');
+        if (sp) { const k = sp.dataset.snd; ac(); openSoundPicker(S.settings.sounds[k], id => { S.settings.sounds[k] = id; saveNow(); setTimeout(() => openSettings(), 120); }, k === 'alarm' ? 'Alarm sound' : k === 'pomo' ? 'Focus cycle sound' : 'Timer sound'); return; }
         const th = e.target.closest('[data-set-theme]');
         if (th) { setTheme(th.dataset.setTheme, e); $$('.theme-card', sh).forEach(c => c.classList.toggle('on', c === th)); return; }
         const b = e.target.closest('[data-act]'); if (!b) return;
@@ -2354,6 +2742,7 @@ function exportData() {
   a.href = URL.createObjectURL(blob); a.download = `clock-of-master-${todayKey()}.json`;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  S.settings.lastBackup = Date.now(); saveNow();
   toast('Backup exported (bot token left out)');
 }
 function loadDemo() {
@@ -2404,13 +2793,18 @@ function onClick(e) {
   const pk = e.target.closest('[data-picker]'); if (pk) { S.settings.picker = pk.dataset.picker; save(); return renderView(); }
   const sm = e.target.closest('[data-swmode]'); if (sm) { S.settings.swMode = sm.dataset.swmode; save(); return renderView(); }
   const ta = e.target.closest('[data-tact]'); if (ta) return timerAction(ta.closest('[data-tid]').dataset.tid, ta.dataset.tact);
-  const sd = e.target.closest('[data-sess-del]'); if (sd) { if (confirm('Delete this session?')) { S.sessions = S.sessions.filter(s => s.id !== sd.dataset.sessDel); saveNow(); refresh(); } return; }
-  const td = e.target.closest('[data-todo-del]'); if (td) { S.todos = S.todos.filter(t => t.id !== td.dataset.todoDel); saveNow(); return refresh(); }
+  const sd = e.target.closest('[data-sess-del]');
+  if (sd) { const gone = S.sessions.find(s => s.id === sd.dataset.sessDel); if (!gone) return;
+    S.sessions = S.sessions.filter(s => s.id !== gone.id); saveNow(); refresh();
+    toast('Session deleted', 5000, { label: 'Undo', fn: () => { S.sessions.push(gone); saveNow(); refresh(); } }); return; }
+  const td = e.target.closest('[data-todo-del]');
+  if (td) { const gone = S.todos.find(t => t.id === td.dataset.todoDel); S.todos = S.todos.filter(t => t.id !== td.dataset.todoDel); saveNow(); refresh();
+    if (gone) toast('Task deleted', 5000, { label: 'Undo', fn: () => { S.todos.push(gone); saveNow(); refresh(); } }); return; }
   const cd = e.target.closest('[data-city-del]'); if (cd) { S.cities.splice(+cd.dataset.cityDel, 1); saveNow(); return refresh(); }
   const ad = e.target.closest('[data-alarm-del]'); if (ad) { S.alarms = S.alarms.filter(a => a.id !== ad.dataset.alarmDel); saveNow(); return refresh(); }
   if (e.target.closest('#island')) { const it = e.target.closest('[data-go]') || $('#island [data-go]'); if (it) go(it.dataset.go); return; }
   const b = e.target.closest('[data-act]'); if (!b) return;
-  if (inSheet && !['send-report', 'export', 'load-demo', 'clear-demo', 'reset', 'test-sound', 'notif'].includes(b.dataset.act)) return; // sheet handles its own
+  if (inSheet && !['send-report', 'export', 'load-demo', 'clear-demo', 'reset', 'test-sound', 'notif', 'ddays', 'send-week'].includes(b.dataset.act)) return; // sheet handles its own
   const act = b.dataset.act;
   switch (act) {
     case 'toggle': toggleSubject(b.dataset.sid); break;
@@ -2420,10 +2814,12 @@ function onClick(e) {
     case 'settings': openSettings(b.dataset.sec); break;
     case 'ddays': openDdays(); break;
     case 'send-report': sendReport(todayKey()); break;
-    case 't-start': startTimer(pick, pickLabel.trim(), pickSid); break;
+    case 'send-week': sendWeekly(todayKey()); break;
+    case 't-start': startTimer(pick, pickLabel.trim(), pickSid, pickSound); break;
+    case 't-sound': ac(); openSoundPicker(pickSound || S.settings.sounds.timer, id => { pickSound = id; renderView(); }, 'Timer sound'); break;
     case 't-clear': pick = 0; pickLabel = ''; pickSid = ''; renderView(); break;
-    case 't-preset': pick = +b.dataset.dur; startTimer(pick, '', pickSid); break;
-    case 't-recent': { const r = S.recents[+b.dataset.i]; if (r) startTimer(r.dur, r.label, ''); break; }
+    case 't-preset': pick = +b.dataset.dur; startTimer(pick, '', pickSid, pickSound); break;
+    case 't-recent': { const r = S.recents[+b.dataset.i]; if (r) startTimer(r.dur, r.label, '', pickSound); break; }
     case 'p-start': pomoStart(); break;
     case 'p-stop': pomoStop(); break;
     case 'p-skip': pomoSkip(); break;
@@ -2437,8 +2833,8 @@ function onClick(e) {
     case 'export': exportData(); break;
     case 'load-demo': loadDemo(); break;
     case 'clear-demo': clearDemo(); break;
-    case 'reset': if (confirm('Erase all sessions, tasks, timers and settings on this device?')) { localStorage.removeItem(KEY); location.reload(); } break;
-    case 'test-sound': { ac(); const was = S.settings.sound; S.settings.sound = true; chime('done'); S.settings.sound = was; break; }
+    case 'reset': confirmSheet('Reset everything?', 'This erases all sessions, tasks, timers and settings stored on this device. Export a backup first if you want to keep them.', 'Erase', () => { localStorage.removeItem(KEY); location.reload(); }, true); break;
+    case 'test-sound': { ac(); const was = S.settings.sounds.on; S.settings.sounds.on = true; playSound(S.settings.sounds.timer); S.settings.sounds.on = was; break; }
     case 'notif': if ('Notification' in window) Notification.requestPermission().then(p => { toast('Notifications: ' + p); b.textContent = p === 'granted' ? 'Allowed' : 'Allow'; }); break;
   }
 }
@@ -2477,6 +2873,13 @@ function loop() {
     if (m !== lastMin) {
       lastMin = m; checkAlarms(); tgAuto();
       const d = todayKey(); if (d !== lastDay) { if (lastDay) refresh(); lastDay = d; }
+      const mx = S.settings.maxSessionH;
+      if (mx && S.running && Date.now() - S.running.start > mx * HOUR && !S.pomo.on) {
+        const nm = nameOf(S.running.sid);
+        stopSubject(S.running.start + mx * HOUR);
+        notify('Session stopped', nm + ' ran for ' + mx + ' hours');
+        toast(nm + ' ran ' + mx + 'h — stopped. Fix it in Planner.', 6000);
+      }
     }
   } catch (e) { console.error(e); }
 }
@@ -2496,6 +2899,17 @@ function boot() {
   let rz = 0;
   addEventListener('resize', () => { moveInd(); clearTimeout(rz); rz = setTimeout(() => { if (curTab === 'stats') Views.stats.drawFlow($('#v-stats')); }, 200); });
   addEventListener('storage', e => { if (e.key === KEY) { load(); refresh(); } });
+  initSwipe();
+  loadCustomSounds();
+  if (!S.settings.hintSwipe && ('ontouchstart' in window)) {
+    S.settings.hintSwipe = 1; save();
+    setTimeout(() => toast('Tip: swipe left or right to change tabs', 4200), 2200);
+  }
+  setTimeout(() => {
+    const n = S.sessions.filter(s => !s.demo).length;
+    if (n > 40 && Date.now() - (S.settings.lastBackup || S.settings.installed) > 21 * DAY)
+      toast('It has been a while since your last backup', 7000, { label: 'Export', fn: exportData });
+  }, 6000);
   applyTab(S.settings.tab || 'today');
   lastDay = todayKey();
   setInterval(loop, 250);
